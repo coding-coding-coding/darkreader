@@ -42,10 +42,31 @@ export function hasFirefoxNewRootBehavior(): boolean {
     );
 }
 
+function getEyeCareFilterValue(config: Theme): string {
+    if (!config.enableEyeCare) return '';
+    return `sepia(${config.eyeCareIntensity})`;
+}
+
 export default function createCSSFilterStyleSheet(config: Theme, url: string, isTopFrame: boolean, fixes: string, index: SitePropsIndex<InversionFix>): string {
-    const filterValue = getCSSFilterValue(config)!;
+    const mainFilterValue = getCSSFilterValue(config)!;
     const reverseFilterValue = 'invert(100%) hue-rotate(180deg)';
-    return cssFilterStyleSheetTemplate('html', filterValue, reverseFilterValue, config, url, isTopFrame, fixes, index);
+    const eyeCareFilter = getEyeCareFilterValue(config);
+    
+    // 필터 값들을 결합
+    const combinedFilterValue = eyeCareFilter 
+        ? `${mainFilterValue} ${eyeCareFilter}`
+        : mainFilterValue;
+    
+    return cssFilterStyleSheetTemplate(
+        'html',
+        combinedFilterValue,
+        reverseFilterValue,
+        config,
+        url,
+        isTopFrame,
+        fixes,
+        index
+    );
 }
 
 export function cssFilterStyleSheetTemplate(filterRoot: string, filterValue: string, reverseFilterValue: string, config: Theme, url: string, isTopFrame: boolean, fixes: string, index: SitePropsIndex<InversionFix>): string {

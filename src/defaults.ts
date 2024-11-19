@@ -38,6 +38,9 @@ export const DEFAULT_THEME: Theme = {
     lightColorScheme: 'Default',
     darkColorScheme: 'Default',
     immediateModify: false,
+    // 야간 모드
+    enableEyeCare: false,
+    eyeCareIntensity: 0.3,
 };
 
 export const DEFAULT_COLORSCHEME: ParsedColorSchemeConfig = {
