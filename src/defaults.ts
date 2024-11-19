@@ -101,4 +101,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
     enableForProtectedPages: false,
     enableContextMenus: false,
     detectDarkTheme: true,
+    // 여기에 눈 보호 모드 설정 추가
+    enableEyeCare: false,        // 눈 보호 모드 기본값은 비활성화
+    eyeCareIntensity: 0.3,      // 노란색 필터 강도 기본값
 };

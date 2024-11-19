@@ -51,6 +51,9 @@ export function getMockData(override = {} as Partial<ExtensionData>): ExtensionD
                 longitude: 31.021786,
             },
             detectDarkTheme: false,
+            // 눈 보호 모드 설정 추가
+            enableEyeCare: false,
+            eyeCareIntensity: 0.3,
         } as UserSettings,
         fonts: [
             'serif',

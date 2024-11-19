@@ -120,6 +120,9 @@ export interface UserSettings {
     enableForProtectedPages: boolean;
     enableContextMenus: boolean;
     detectDarkTheme: boolean;
+    //야간 모드
+    enableEyeCare: boolean;
+    eyeCareIntensity: number;
 }
 
 export interface TimeSettings {
