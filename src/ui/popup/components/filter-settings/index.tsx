@@ -5,6 +5,7 @@ import ModeToggle from './mode-toggle';
 import {getLocalMessage} from '../../../../utils/locales';
 import {isURLInList} from '../../../../utils/url';
 import type {ExtWrapper, Theme} from '../../../../definitions';
+import EyeCareToggle from '../eyecare-toggle';
 
 export default function FilterSettings({data, actions}: ExtWrapper, ...children: Malevic.Child[]) {
     const custom = data.settings.customThemes.find(({url}) => isURLInList(data.activeTab.url, url));
@@ -18,6 +19,29 @@ export default function FilterSettings({data, actions}: ExtWrapper, ...children:
             actions.setTheme(config);
         }
     }
+
+    function setEyeCare(enabled: boolean) {
+        actions.setTheme({
+            ...theme,
+            enableEyeCare: enabled
+        });
+    }
+
+    function setEyeCareIntensity(intensity: number) {
+        actions.setTheme({
+            ...theme,
+            eyeCareIntensity: intensity
+        });
+    }
+
+    const eyeCare = (
+        <EyeCareToggle
+            enabled={theme.enableEyeCare}
+            intensity={theme.eyeCareIntensity}
+            onChange={(enabled) => setConfig({enableEyeCare: enabled})}
+            onIntensityChange={(intensity) => setConfig({eyeCareIntensity: intensity})}
+        />
+    );
 
     const brightness = (
         <UpDown
@@ -69,8 +93,15 @@ export default function FilterSettings({data, actions}: ExtWrapper, ...children:
 
     return (
         <section class="filter-settings">
+            <EyeCareToggle 
+                enabled={theme.enableEyeCare}
+                intensity={theme.eyeCareIntensity}
+                onChange={setEyeCare}
+                onIntensityChange={setEyeCareIntensity}
+            />
             <ModeToggle mode={theme.mode} onChange={(mode) => setConfig({mode})} />
             {brightness}
+            {eyeCare} // Add this line
             {contrast}
             {sepia}
             {grayscale}

@@ -1,0 +1,39 @@
+.eye-care-toggle {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    -moz-user-select: none;
+    user-select: none;
+    margin-bottom: @indent-small;
+
+    &__line {
+        display: flex;
+        flex-direction: row;
+
+        > :not(:first-child) {
+            margin-left: @indent-small;
+        }
+    }
+
+    .toggle {
+        flex: auto;
+    }
+
+    &__label {
+        font-size: @size-text-small;
+        line-height: @size-text-small-height;
+        text-align: center;
+    }
+
+    &__button--active {
+        background: @color-control-active;
+
+        &:hover {
+            background: @color-control-active;
+        }
+    }
+}
+
+.icon--eye-care {
+    background-image: url(../assets/images/mode-dark-32.svg);
+}

@@ -78,8 +78,8 @@ export interface Theme {
     darkColorScheme: string;
     immediateModify: boolean;
     // 야간 모드
-    enableEyeCare?: boolean;
-    eyeCareIntensity?: number;
+    enableEyeCare: boolean;
+    eyeCareIntensity: number;
 }
 
 export interface CustomSiteConfig {
